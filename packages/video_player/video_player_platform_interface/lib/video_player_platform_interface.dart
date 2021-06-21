@@ -221,12 +221,12 @@ class VideoEvent {
   ///
   /// Depending on the [eventType], the [duration], [size] and [buffered]
   /// arguments can be null.
-  VideoEvent({
-    required this.eventType,
-    this.duration,
-    this.size,
-    this.buffered,
-  });
+  VideoEvent(
+      {required this.eventType,
+      this.duration,
+      this.size,
+      this.buffered,
+      this.rotation});
 
   /// The type of the event.
   final VideoEventType eventType;
@@ -240,6 +240,9 @@ class VideoEvent {
   ///
   /// Only used if [eventType] is [VideoEventType.initialized].
   final Size? size;
+
+  /// The rotation value
+  final int? rotation;
 
   /// Buffered parts of the video.
   ///
@@ -262,7 +265,8 @@ class VideoEvent {
       eventType.hashCode ^
       duration.hashCode ^
       size.hashCode ^
-      buffered.hashCode;
+      buffered.hashCode ^
+      rotation.hashCode;
 }
 
 /// Type of the event.

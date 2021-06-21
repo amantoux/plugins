@@ -40,6 +40,7 @@ class VideoPlayerValue {
     this.volume = 1.0,
     this.playbackSpeed = 1.0,
     this.errorDescription,
+    this.rotation,
   });
 
   /// Returns an instance for a video that hasn't been loaded.
@@ -96,6 +97,9 @@ class VideoPlayerValue {
   /// Indicates whether or not the video has been loaded and is ready to play.
   final bool isInitialized;
 
+  /// The rotation value
+  final int? rotation;
+
   /// Indicates whether or not the video is in an error state. If this is true
   /// [errorDescription] should have information about the problem.
   bool get hasError => errorDescription != null;
@@ -132,6 +136,7 @@ class VideoPlayerValue {
     double? volume,
     double? playbackSpeed,
     String? errorDescription,
+    int? rotation,
   }) {
     return VideoPlayerValue(
       duration: duration ?? this.duration,
@@ -146,6 +151,7 @@ class VideoPlayerValue {
       volume: volume ?? this.volume,
       playbackSpeed: playbackSpeed ?? this.playbackSpeed,
       errorDescription: errorDescription ?? this.errorDescription,
+      rotation: rotation ?? this.rotation,
     );
   }
 
@@ -321,6 +327,7 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
             duration: event.duration,
             size: event.size,
             isInitialized: event.duration != null,
+            rotation: event.rotation,
           );
           initializingCompleter.complete(null);
           _applyLooping();
